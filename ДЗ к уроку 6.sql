@@ -31,8 +31,13 @@ LIMIT 10
 
 4)
 
+SELECT
+*,
+COUNT(users_id) AS amount_users,
+(SELECT `gender` FROM `profiles` WHERE profiles.users_id = likes.users_id) AS gender
+FROM `vk`.`likes`
 
-
+GROUP BY gender
 
 5)
 
@@ -43,3 +48,4 @@ SELECT
     (SELECT COUNT(*) FROM `likes` WHERE id = users_id) AS users_activity
 FROM vk.posts
 ORDER BY users_activity 
+LIMIT 10
